@@ -1,0 +1,4 @@
+name: chat_time_logger
+version: '${project.version}'
+main: org.tacowasa.chat_time_logger.ChatTimeLogger
+api-version: '1.19'
