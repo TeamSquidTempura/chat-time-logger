@@ -1,12 +1,19 @@
 package org.tacowasa.chat_time_logger;
 
-import java.util.Date;
+
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.chat.HoverEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerChatEvent;
+
+import java.util.Arrays;
+import java.util.Date;
 
 public class Listener implements org.bukkit.event.Listener {
     @Deprecated
@@ -17,7 +24,10 @@ public class Listener implements org.bukkit.event.Listener {
         String message = event.getMessage();
         Date date = new Date();
         event.setCancelled(true);
-        Bukkit.broadcastMessage(ChatColor.GREEN+"||"+date+"||"+ChatColor.WHITE+"<"+name+"> "+message);
+        String n = ChatColor.WHITE+"<"+name+"> "+message;
+        String x = "||"+date+"||";
+        BaseComponent[] components = new ComponentBuilder(n).event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(x).create())).create();
+        Bukkit.broadcast(components);
         return true;
     }
 }
